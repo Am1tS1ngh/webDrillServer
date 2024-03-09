@@ -25,5 +25,7 @@ mongoose.connect(process.env.URI)
 });
 
 
-
+app.get("/", (req, res) => {
+    res.send("Hello Idiot");
+})
 app.use("/users", userRouter);
