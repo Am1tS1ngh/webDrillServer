@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const path = require("path"); 
 dotenv.config();
 
 app.use(cors());
@@ -11,7 +12,8 @@ app.use(cors());
 const userRouter = require("./routes/userRoute"); 
 app.use(express.json());
 
-
+app.set("views", path.join(__dirname, "views"));  // Views directory is set to the "views" folder
+app.set("view engine", "ejs");
 mongoose.connect(process.env.URI)
 .then(()=>{
     console.log("Connected Successfully to db");
@@ -26,6 +28,6 @@ mongoose.connect(process.env.URI)
 
 
 app.get("/", (req, res) => {
-    res.send("Hello Idiot");
+    res.render("index")
 })
 app.use("/users", userRouter);
