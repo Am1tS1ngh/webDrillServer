@@ -5,8 +5,11 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path"); 
 dotenv.config();
-
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    // Add other allowed origins as needed
+  };
+app.use(cors(corsOptions));
 
 // importing all routing files
 const userRouter = require("./routes/userRoute"); 
